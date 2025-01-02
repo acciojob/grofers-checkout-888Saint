@@ -11,11 +11,11 @@ const getSum = () => {
   // Calculate the sum of prices
   let total = 0;
   priceElements.forEach(price => {
-    total += parseFloat(price.textContent); // Parse text as a number
+    total += parseFloat(price.textContent) || 0; // Parse text as a number, handle invalid numbers
   });
 
   // Check if a total row already exists and remove it
-  const existingTotalRow = document.getElementById("totalRow");
+  let existingTotalRow = document.getElementById("ans");
   if (existingTotalRow) {
     existingTotalRow.remove();
   }
@@ -23,7 +23,7 @@ const getSum = () => {
   // Create a new row for the total price
   const table = document.querySelector("table");
   const totalRow = document.createElement("tr");
-  totalRow.id = "totalRow"; // Add an ID for easy reference
+  totalRow.id = "ans"; // Ensures Cypress can detect it
 
   // Create the cell spanning both columns
   const totalCell = document.createElement("td");
